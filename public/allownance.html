@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceBuddy — Chores & Allowance Hub</title>
+<link rel="stylesheet" href="chores.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 5v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z" fill="#c9bfff"/>
+        <path d="M9 12.2l2 2 4-4.4" stroke="#241a5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span class="light">Finance</span><span class="buddy">Buddy</span></div>
+    <span class="plan-badge">Parents</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#" class="active">Chores &amp; Allowance</a>
+    <a href="#">Savings Goals</a>
+    <a href="#">Learning Hub</a>
+    <a href="#">Family Activity</a>
+    <a href="#">Emergency Vault</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info">
+      <span class="user-name">Sarah Jenkins</span>
+      <span class="user-role">Guardian Account</span>
+    </div>
+    <div class="avatar avatar-sarah">SJ</div>
+  </div>
+</nav>
+
+<main class="dashboard">
+
+  <div class="dashboard-header">
+    <div>
+      <div class="title-row">
+        <h1>Chores &amp; Allowance Hub</h1>
+        <span class="badge badge-info">Next Allowance: Sat, Oct 18 ($25.00)</span>
+      </div>
+      <p class="muted">Encourage responsibility and work ethic with automated payouts and smart money guidelines.</p>
+    </div>
+  </div>
+
+  <div class="grid-top">
+
+    <div class="left-col">
+      <section class="card rule-card">
+        <div class="rule-header">
+          <div>
+            <h2>Automated Allowance Rule Splits</h2>
+            <p class="muted small">When Leo completes chores, earnings are auto-allocated according to his age-aware AI guidelines.</p>
+          </div>
+          <a href="#" class="configure-link">Configure Rule</a>
+        </div>
+
+        <div class="allocation-bar">
+          <div class="bar-segment seg-spending" style="width:50%"></div>
+          <div class="bar-segment seg-emergency" style="width:30%"></div>
+          <div class="bar-segment seg-savings" style="width:20%"></div>
+        </div>
+        <div class="allocation-legend">
+          <div class="legend-item"><span class="dot dot-spending"></span>50% Everyday Spending</div>
+          <div class="legend-item"><span class="dot dot-emergency"></span>30% Secure Emergency Locked</div>
+          <div class="legend-item"><span class="dot dot-savings"></span>20% Long-term Savings Goals</div>
+        </div>
+      </section>
+
+      <section class="card chores-card">
+        <div class="chores-header">
+          <h2>Active Chores Checklist</h2>
+          <button class="btn-assign">+ Assign New Chore</button>
+        </div>
+
+        <ul class="chore-list">
+          <li class="chore-item">
+            <div class="chore-icon icon-amber">🧺</div>
+            <div class="chore-info">
+              <div class="chore-title-row">
+                <span class="chore-title">Mow the Front &amp; Back Lawns</span>
+                <span class="tag tag-oneoff">One-off</span>
+              </div>
+              <p class="chore-sub">Due Today · Status: <span class="status-completed">Completed (Awaiting Proof Approval)</span></p>
+            </div>
+            <div class="chore-right">
+              <span class="chore-amount">$15.00</span>
+              <button class="btn-approve">Approve Now</button>
+            </div>
+          </li>
+
+          <li class="chore-item">
+            <div class="chore-icon icon-blue">🔄</div>
+            <div class="chore-info">
+              <div class="chore-title-row">
+                <span class="chore-title">Wash the Family SUV</span>
+                <span class="tag tag-biweekly">Biweekly</span>
+              </div>
+              <p class="chore-sub">Every Saturday · Status: <span class="status-progress">In Progress</span></p>
+            </div>
+            <div class="chore-right">
+              <span class="chore-amount">$10.00</span>
+            </div>
+          </li>
+
+          <li class="chore-item">
+            <div class="chore-icon icon-green">🐾</div>
+            <div class="chore-info">
+              <div class="chore-title-row">
+                <span class="chore-title">Walk Sparky &amp; Fill Water Bowls</span>
+                <span class="tag tag-daily">Daily</span>
+              </div>
+              <p class="chore-sub">Daily Chore · Status: <span class="status-approved">Completed (Approved)</span></p>
+            </div>
+            <div class="chore-right">
+              <span class="chore-amount">$3.50</span>
+            </div>
+          </li>
+
+          <li class="chore-item">
+            <div class="chore-icon icon-purple">🗄️</div>
+            <div class="chore-info">
+              <div class="chore-title-row">
+                <span class="chore-title">Clean Bedroom &amp; Organize Shelves</span>
+                <span class="tag tag-oneoff">One-off</span>
+              </div>
+              <p class="chore-sub">Due in 3 days · Status: <span class="status-pending">Awaiting Action</span></p>
+            </div>
+            <div class="chore-right">
+              <span class="chore-amount">$5.00</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="right-col">
+      <section class="card insights-card">
+        <div class="insights-header"><span class="mini-icon">✦</span> Allowance Coach Insights</div>
+        <p class="insights-text">"Leo completed 88% of his weekly assignments, instilling systematic expectations early pays dividends. Remind him that savings allocation happens automatically so he can focus on consistency over speed."</p>
+      </section>
+
+      <section class="card summary-card">
+        <h3>Earnings Summary</h3>
+        <div class="summary-row">
+          <span>Earnings this month</span>
+          <span>$58.50</span>
+        </div>
+        <div class="summary-row">
+          <span>Parent-funded bonuses</span>
+          <span>$10.00</span>
+        </div>
+        <hr>
+        <div class="summary-row total-row">
+          <span>Total Scheduled payout</span>
+          <span class="total-value">$68.50</span>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+</main>
+
+</body>
+</html>
