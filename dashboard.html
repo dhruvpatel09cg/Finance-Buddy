@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceBuddy — Family Dashboard</title>
+<style>
+  :root{
+    --bg-deep: #0e0a2b;
+    --bg-panel: #171335;
+    --bg-panel-2: #1c1840;
+    --border-soft: rgba(255,255,255,0.08);
+    --purple-accent: #7c5cff;
+    --purple-bright: #9b7bff;
+    --green: #35d07f;
+    --amber: #f2b544;
+    --pink-outline: #ff5fd1;
+    --text-main: #f3f1fb;
+    --text-dim: #a9a4c9;
+    --text-faint: #6e698f;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 15% 0%, #1a1444 0%, var(--bg-deep) 55%);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 28px 40px 60px;
+  }
+
+  /* ---------- Top nav ---------- */
+  .topnav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 30px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .brand-mark{
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3ee6b8, #22b894);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .brand-mark svg{
+    width: 18px;
+    height: 18px;
+  }
+  .brand span.buddy{ color: var(--purple-bright); font-weight: 800; }
+  .beta-tag{
+    background: rgba(124,92,255,0.18);
+    color: var(--purple-bright);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+  .nav-links a{
+    color: inherit;
+    text-decoration: none;
+  }
+  .nav-links a.active{
+    color: var(--text-main);
+    font-weight: 600;
+  }
+
+  .profile{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .profile-text{ text-align:right; line-height:1.2; }
+  .profile-text .name{ font-size: 0.85rem; font-weight: 600; }
+  .profile-text .role{ font-size: 0.7rem; color: var(--text-faint); }
+  .avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffb199, #ff8a65);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.9rem;
+    border: 2px solid var(--purple-accent);
+  }
+
+  /* ---------- Header row ---------- */
+  .page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom: 22px;
+  }
+  .page-header h1{
+    margin:0 0 4px;
+    font-size: 1.5rem;
+  }
+  .page-header p{
+    margin:0;
+    color: var(--text-faint);
+    font-size: 0.85rem;
+  }
+  .fund-btn{
+    background: var(--purple-accent);
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .fund-btn:hover{ background: var(--purple-bright); }
+
+  /* ---------- Grid layout ---------- */
+  .dashboard-grid{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+  }
+
+  /* Child card */
+  .child-card{
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+  }
+  .child-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .child-id{
+    display:flex;
+    gap: 12px;
+    align-items:center;
+  }
+  .child-avatar{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd39a, #ff9a5a);
+    flex-shrink:0;
+  }
+  .child-id .name{ font-weight: 700; font-size: 1rem; }
+  .child-id .meta{ font-size: 0.78rem; color: var(--text-faint); }
+  .kiddo-badge{
+    background: rgba(124,92,255,0.2);
+    color: var(--purple-bright);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    height: fit-content;
+  }
+  .balance-block{ text-align:right; }
+  .balance-block .label{ font-size: 0.7rem; color: var(--text-faint); }
+  .balance-block .amount{ font-size: 1.35rem; font-weight: 700; }
+
+  .allocation-label{
+    display:flex;
+    justify-content:space-between;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  .allocation-label a{ color: var(--purple-bright); text-decoration:none; font-size: 0.75rem; }
+
+  .bar{
+    display:flex;
+    height: 10px;
+    border-radius: 6px;
+    overflow:hidden;
+    background: #26224d;
+  }
+  .bar .seg-1{ background: var(--purple-accent); width: 50%; }
+  .bar .seg-2{ background: var(--amber); width: 20%; }
+  .bar .seg-3{ background: var(--green); width: 30%; }
+
+  .legend{
+    display:flex;
+    gap: 18px;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+  }
+  .legend span{ display:flex; align-items:center; gap:6px; }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .dot.purple{ background: var(--purple-accent); }
+  .dot.amber{ background: var(--amber); }
+  .dot.green{ background: var(--green); }
+
+  /* Side cards */
+  .side-stack{
+    display:flex;
+    flex-direction:column;
+    gap: 20px;
+  }
+  .side-card .tag{
+    display:inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .tag.urgent{ background: rgba(255,95,95,0.18); color: #ff8080; }
+  .side-card h3{ margin: 0 0 6px; font-size: 0.95rem; }
+  .side-card p{ margin: 0 0 14px; font-size: 0.8rem; color: var(--text-dim); line-height:1.4; }
+  .review-btn{
+    width:100%;
+    background: var(--purple-accent);
+    color:#fff;
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor:pointer;
+  }
+  .review-btn:hover{ background: var(--purple-bright); }
+  .side-card.coach p{ margin-bottom: 0; }
+
+  /* ---------- Bottom stat row ---------- */
+  .stats-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .stat-card h4{
+    margin:0 0 12px;
+    font-size: 0.85rem;
+  }
+  .goal-row{
+    display:flex;
+    justify-content:space-between;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .goal-bar{
+    height: 8px;
+    border-radius: 6px;
+    background: #26224d;
+    overflow:hidden;
+  }
+  .goal-bar .fill{
+    height:100%;
+    width: 65%;
+    background: linear-gradient(90deg, var(--purple-accent), var(--green));
+    border-radius: 6px;
+  }
+  .alert-row{
+    display:flex;
+    align-items:flex-start;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .alert-icon{
+    color: var(--amber);
+    font-size: 1rem;
+    line-height:1;
+  }
+
+  /* ---------- Hero section ---------- */
+  .hero{
+    text-align:center;
+    padding: 30px 0 40px;
+  }
+  .hero h2{
+    font-size: 1.7rem;
+    margin: 0 0 18px;
+  }
+  .hero-quote{
+    display:inline-block;
+    border: 1.5px dashed var(--pink-outline);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    max-width: 620px;
+  }
+
+  /* ---------- Feature cards ---------- */
+  .features{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feature-card{
+    background: var(--bg-panel-2);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .feature-icon{
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: rgba(124,92,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom: 14px;
+    color: var(--purple-bright);
+    font-size: 1rem;
+  }
+  .feature-card h4{
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+  }
+  .feature-card p{
+    margin:0;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    line-height: 1.5;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    body{ padding: 20px; }
+    .dashboard-grid{ grid-template-columns: 1fr; }
+    .stats-row{ grid-template-columns: 1fr; }
+    .features{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" fill="#ffffff" fill-opacity="0.15"/>
+          <path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M8.5 12.2l2.4 2.4 4.6-4.8" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      Finance<span class="buddy">Buddy</span>
+      <span class="beta-tag">FAMILY</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="active">Overview</a>
+      <a href="#">AI Guard</a>
+      <a href="#">Approvals</a>
+      <a href="#">Family Security</a>
+    </div>
+    <div class="profile">
+      <div class="profile-text">
+        <div class="name">Sarah Jenkins</div>
+        <div class="role">Guardian Account</div>
+      </div>
+      <div class="avatar">🙂</div>
+    </div>
+  </div>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div>
+      <h1>Sarah's Family Dashboard</h1>
+      <p>Guiding 1 active child account</p>
+    </div>
+    <button class="fund-btn">+ Fund Child Wallet</button>
+  </div>
+
+  <!-- Main dashboard grid -->
+  <div class="dashboard-grid">
+
+    <!-- Child overview card -->
+    <div class="card child-card">
+      <div class="child-top">
+        <div class="child-id">
+          <div class="child-avatar"></div>
+          <div>
+            <div class="name">Leo Jenkins</div>
+            <div class="meta">Age 14 · Active Plan</div>
+          </div>
+        </div>
+        <span class="kiddo-badge">KIDDO STEALS</span>
+      </div>
+
+      <div>
+        <div class="balance-block" style="text-align:left; margin-bottom: 14px;">
+          <div class="label">TOTAL MANAGED BALANCE</div>
+          <div class="amount">$1,450.00</div>
+        </div>
+
+        <div class="allocation-label">
+          <span>Active AI Allocation (Age 14 Standard)</span>
+          <a href="#">Modify AI Plan</a>
+        </div>
+        <div style="height:8px;"></div>
+        <div class="bar">
+          <div class="seg-1"></div>
+          <div class="seg-2"></div>
+          <div class="seg-3"></div>
+        </div>
+        <div style="height:10px;"></div>
+        <div class="legend">
+          <span><span class="dot purple"></span>50% Everyday Spending</span>
+          <span><span class="dot amber"></span>20% Emergency Fund (Locked)</span>
+          <span><span class="dot green"></span>30% Smart Savings (Growing)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side stack -->
+    <div class="side-stack">
+      <div class="card side-card">
+        <span class="tag urgent">URGENT</span>
+        <h3>Approval Requested</h3>
+        <p>Leo wants to use $240 from his savings to purchase a laptop.</p>
+        <button class="review-btn">Review Request</button>
+      </div>
+      <div class="card side-card coach">
+        <h3>AI Guardian Coach</h3>
+        <p>"Leo's savings rate is 18% above his average this month. We recommend allocating a small bonus for building healthy saving habits."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="card stat-card">
+      <h4>Goal Progress</h4>
+      <div class="goal-row">
+        <span>New Coding Laptop</span>
+        <span>$800 / $1,200</span>
+      </div>
+      <div class="goal-bar"><div class="fill"></div></div>
+    </div>
+    <div class="card stat-card">
+      <h4>AI Smart Alerts</h4>
+      <div class="alert-row">
+        <span class="alert-icon">⚠</span>
+        <span>Emergency fund spending activity was recently noticed.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero / value prop -->
+  <div class="hero">
+    <h2>A Modern Approach to Family Finance</h2>
+    <div class="hero-quote">
+      Say goodbye to simple spending limits. FinanceBuddy guides you through a balanced, visual structure that helps them budget intelligently.
+    </div>
+  </div>
+
+  <!-- Feature cards -->
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🛡</div>
+      <h4>Parent-Funded &amp; Approvals</h4>
+      <p>Instantly fund your kid's wallet. Monitor transactions in real time, set custom category rules, and approve/decline unusual spends directly from your phone.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h4>Age-Aware AI Plans</h4>
+      <p>Our intelligent assistant suggests optimal allocation ratios (e.g. 50% Everyday, 20% Emergency, 30% Savings) customized exactly to each child's age and behavioral trends.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h4>Goal &amp; Emergency Guard</h4>
+      <p>Emergency funds are locked from everyday spending. Savings towards goals are automatically nurtured, so parents and kids can align on real-world coaching.</p>
+    </div>
+  </div>
+
+</body>
+</html>
