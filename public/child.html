@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceBuddy — Purchase Request &amp; AI Plan</title>
+<link rel="stylesheet" href="aiplan.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 5v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z" fill="#c9bfff"/>
+        <path d="M9 12.2l2 2 4-4.4" stroke="#241a5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span class="light">Finance</span><span class="buddy">Buddy</span></div>
+    <span class="plan-badge">Parents</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Overview</a>
+    <a href="#">AI Guard</a>
+    <a href="#" class="active">Child</a>
+    <a href="#">Family Security</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info">
+      <span class="user-name">Sarah Jenkins</span>
+      <span class="user-role">Guardian Account</span>
+    </div>
+    <div class="avatar avatar-sarah">SJ</div>
+  </div>
+</nav>
+
+<main class="dashboard">
+
+  <div class="grid-top">
+    <section class="card request-card">
+      <div class="request-top">
+        <div class="request-left">
+          <div class="request-icon">💻</div>
+          <div>
+            <p class="request-title">Purchase Request: Coding Laptop</p>
+            <p class="request-sub">Submitted by Leo · 1 hour ago</p>
+          </div>
+        </div>
+        <span class="request-amount">$240.00</span>
+      </div>
+
+      <div class="impact-box">
+        <div class="impact-header"><span class="mini-icon">✦</span> AI Impact Analysis</div>
+        <p class="impact-text">"Leo has hit 80% of his target savings through automated allowance allocations over 4 months. Approving this request completes his goal while maintaining his 100% untouched $435.00 Emergency Fund intact."</p>
+      </div>
+
+      <div class="request-actions">
+        <button class="btn-approve">Approve Savings Drawdown</button>
+        <button class="btn-decline">Decline &amp; Discuss</button>
+      </div>
+    </section>
+
+    <section class="card balance-card">
+      <h3>Post-Purchase Balance State</h3>
+      <div class="balance-row">
+        <span class="muted small">Smart Savings Goal</span>
+        <span class="balance-left">$50.00 left</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill fill-green" style="width:88%"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="plan-header">
+    <div>
+      <h2>Review age-aware AI Plan</h2>
+      <p class="muted">Target: Leo Jenkins (Age 14) · Designed for balanced saving &amp; safety</p>
+    </div>
+    <button class="btn-activate">Activate AI Plan</button>
+  </div>
+
+  <div class="grid-mid">
+    <div class="left-col">
+      <div class="plan-item plan-blue">
+        <div class="plan-circle circle-blue">50%</div>
+        <div>
+          <p class="plan-title">Everyday Expenses &amp; Flex Fund</p>
+          <p class="plan-desc">Recommended to teach independent discretionary budget allocation. Covers lunches, transit, and quick entertainment without requiring specific parent approvals.</p>
+        </div>
+      </div>
+
+      <div class="plan-item plan-amber">
+        <div class="plan-circle circle-amber">30%</div>
+        <div>
+          <p class="plan-title">Secured Emergency Buffer</p>
+          <p class="plan-desc">Highly locked. Stored securely and can only be accessed with clear, assistant-vetted reasoning for unexpected, critical moments.</p>
+        </div>
+      </div>
+
+      <div class="plan-item plan-teal">
+        <div class="plan-circle circle-teal">20%</div>
+        <div>
+          <p class="plan-title">Goal-Based Smart Savings</p>
+          <p class="plan-desc">Allocated automatically towards established child goals. Promotes long-term target tracking instead of instant gratification.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="card controls-card">
+      <h3>Plan Controls</h3>
+
+      <label class="control-label">Child Age Target</label>
+      <select class="age-select">
+        <option>14 Years Old</option>
+        <option>12 Years Old</option>
+        <option>16 Years Old</option>
+        <option>18 Years Old</option>
+      </select>
+
+      <label class="control-label">Plan Strictness</label>
+      <div class="strictness-row">
+        <button class="strict-btn active">Vigilant</button>
+        <button class="strict-btn">Balanced</button>
+        <button class="strict-btn">Relaxed</button>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+</body>
+</html>
