@@ -15,6 +15,7 @@
   const gotoAccount = (role, redirectTo) => window.location.assign(redirectTo || (role === "child" ? "/kids" : "/dashboard"));
   const goHome = () => window.location.assign("/");
   const signOut = () => { localStorage.removeItem(tokenKey); goHome(); };
+  const saveEvent = (action, details = "") => request("/api/events", { method: "POST", body: JSON.stringify({ action, details }) });
   const makeInteractive = (element, action, label) => {
     if (!element) return;
     element.setAttribute("role", "link");
@@ -67,6 +68,77 @@
     });
     document.querySelectorAll(".cursor-pointer").forEach(card => card.addEventListener("click", () => window.location.assign("/register")));
   }
+
+  const pageRoutes = {
+    "Chores & Allowance": "/allowance", "Savings Goals": "/goals", "Learning Hub": "/learning",
+    "Family Activity": "/activity", "Emergency Vault": "/emergency", "Overview": "/dashboard",
+    "AI Guard": "/child", "Approvals": "/activity", "Child": "/child", "Family Security": "/emergency", "Wallet": "/kids",
+    "AI Assistant": "/learning", "Earn Money": "/allowance"
+  };
+  document.addEventListener("click", event => {
+    const target = event.target instanceof Element ? event.target.closest(".nav-links a, nav a") : null;
+    const destination = target && pageRoutes[target.textContent.trim()];
+    if (destination) { event.preventDefault(); event.stopImmediatePropagation(); window.location.assign(destination); }
+  }, true);
+
+  const privatePages = ["/child", "/child.html", "/allowance", "/allownance.html", "/goals", "/savinggoals1.html", "/activity", "/savinggoals.html", "/learning", "/learning.html", "/emergency", "/emergency.html"];
+  if (privatePages.includes(location.pathname)) {
+    request("/api/me").then(({ user }) => {
+      document.querySelectorAll(".user-name").forEach(element => { element.textContent = user.fullName; });
+      document.querySelectorAll(".user-role").forEach(element => { element.textContent = user.role === "parent" ? "Guardian Account" : "Child Account"; });
+    }).catch(() => { localStorage.removeItem(tokenKey); window.location.replace("/login"); });
+    makeInteractive($(".nav-left"), goHome, "Return to FinanceBuddy home");
+    makeInteractive($(".nav-right"), signOut, "Sign out and return to the FinanceBuddy home page");
+  }
+
+  const approvePendingRequest = async (decision) => {
+    const dashboard = await request("/api/dashboard");
+    if (dashboard.user.role !== "parent") throw new Error("Only a parent can review this request.");
+    if (!dashboard.pendingApproval) throw new Error("There are no pending requests to review.");
+    return request(`/api/approvals/${dashboard.pendingApproval.id}/review`, { method: "POST", body: JSON.stringify({ decision }) });
+  };
+  const bindButton = (selector, handler) => document.querySelectorAll(selector).forEach(button => button.addEventListener("click", async () => {
+    try { await handler(button); } catch (error) { show(error.message); }
+  }));
+
+  if (["/child", "/child.html", "/activity", "/savinggoals.html"].includes(location.pathname)) {
+    bindButton(".btn-approve, .btn-approve-release", async button => {
+      const result = await approvePendingRequest("approved"); button.disabled = true; button.textContent = "Approved"; show(result.message);
+    });
+    bindButton(".btn-decline", async button => {
+      const result = await approvePendingRequest("rejected"); button.disabled = true; button.textContent = "Declined"; show(result.message);
+    });
+  }
+
+  if (["/child", "/child.html"].includes(location.pathname)) {
+    document.querySelectorAll(".strict-btn").forEach(button => button.addEventListener("click", async () => {
+      document.querySelectorAll(".strict-btn").forEach(item => item.classList.remove("active")); button.classList.add("active");
+      try { await saveEvent("plan-strictness", button.textContent.trim()); } catch (error) { show(error.message); }
+    }));
+    bindButton(".btn-activate", async button => {
+      const age = $(".age-select")?.value || ""; await saveEvent("ai-plan-activated", age); button.textContent = "AI Plan Active"; button.disabled = true; show("AI plan activated.");
+    });
+  }
+
+  if (["/allowance", "/allownance.html"].includes(location.pathname)) {
+    bindButton(".btn-assign", async () => { const chore = window.prompt("Name the new chore:"); if (!chore) return; await saveEvent("chore-assigned", chore); show("Chore assignment saved."); });
+    bindButton(".btn-approve", async button => { await saveEvent("chore-approved", button.closest(".chore-item")?.textContent.trim() || "Chore"); button.textContent = "Approved"; button.disabled = true; show("Chore approval saved."); });
+    $(".configure-link")?.addEventListener("click", async event => { event.preventDefault(); try { await saveEvent("allowance-rule-configured"); show("Allowance rule configuration saved."); } catch (error) { show(error.message); } });
+  }
+
+  if (["/goals", "/savinggoals1.html"].includes(location.pathname)) {
+    bindButton(".btn-outline", async () => { const goal = window.prompt("Name your savings goal:"); if (!goal) return; await saveEvent("goal-created", goal); show("Goal saved."); });
+    document.querySelectorAll(".goal-link").forEach(link => link.addEventListener("click", async event => { event.preventDefault(); try { await saveEvent("goal-viewed", link.textContent.trim()); show("Goal details recorded."); } catch (error) { show(error.message); } }));
+    document.querySelectorAll(".btn-upload").forEach(button => button.addEventListener("click", () => {
+      const picker = document.createElement("input"); picker.type = "file"; picker.accept = "image/*,.pdf";
+      picker.addEventListener("change", async () => { if (!picker.files?.[0]) return; try { await saveEvent("receipt-selected", picker.files[0].name); show(`Selected ${picker.files[0].name}.`); } catch (error) { show(error.message); } }); picker.click();
+    }));
+    const reason = $("#reason");
+    if (reason) { const submit = document.createElement("button"); submit.type = "button"; submit.className = "btn-outline"; submit.textContent = "Submit Withdrawal Request"; submit.style.marginTop = "14px"; reason.closest(".reason-card")?.append(submit); submit.addEventListener("click", async () => { const amount = window.prompt("Withdrawal amount (USD):"); if (amount === null) return; try { const data = await request("/api/approvals", { method: "POST", body: JSON.stringify({ amount, reason: reason.value }) }); show(data.message); } catch (error) { show(error.message); } }); }
+  }
+
+  if (["/learning", "/learning.html"].includes(location.pathname)) bindButton(".btn-option-primary", async button => { await saveEvent("academy-challenge-completed", button.textContent.trim()); button.textContent = "Correct! Reward recorded"; button.disabled = true; show("Great choice—your challenge reward was recorded."); });
+  if (["/activity", "/savinggoals.html"].includes(location.pathname)) document.querySelectorAll(".filter-pill").forEach(button => button.addEventListener("click", () => { document.querySelectorAll(".filter-pill").forEach(item => item.classList.remove("active")); button.classList.add("active"); }));
 
   if (["/dashboard", "/dashboard.html"].includes(location.pathname)) {
     request("/api/dashboard").then((data) => {

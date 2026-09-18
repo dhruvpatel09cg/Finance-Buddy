@@ -17,4 +17,6 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000). Register an account as a Parent or Child, then sign in. The SQLite database is created automatically at `data/finance-buddy.sqlite` and is excluded from Git. Set `SESSION_SECRET` to a long random value before deploying; `.env.example` lists the supported environment variables.
 
-The backend serves the original `login.html`, `register.html`, and `dashboard.html` unchanged, adding the client integration at response time. It provides registration and login, protected dashboard data, parent funding (50% spending / 20% emergency / 30% savings), child approval requests, and parent request decisions.
+The backend serves the `public/` frontend unchanged, adding the client integration at response time. It provides registration and login, protected dashboard data, parent funding (50% spending / 20% emergency / 30% savings), child approval requests, parent request decisions, and saved actions from the allowance, goal, academy, and AI-plan screens.
+
+Available routes include `/`, `/login`, `/register`, `/dashboard`, `/kids`, `/child`, `/allowance`, `/goals`, `/activity`, `/learning`, and `/emergency`.
