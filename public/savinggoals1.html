@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceBuddy — Savings Goals &amp; Milestones</title>
+<link rel="stylesheet" href="savings.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 5v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z" fill="#c9bfff"/>
+        <path d="M9 12.2l2 2 4-4.4" stroke="#241a5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span class="light">Finance</span><span class="buddy">Buddy</span></div>
+    <span class="plan-badge">Child</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Chores &amp; Allowance</a>
+    <a href="#" class="active">Savings Goals</a>
+    <a href="#">Learning Hub</a>
+    <a href="#">Family Activity</a>
+    <a href="#">Emergency Vault</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info">
+      <span class="user-name">Sarah Jenkins</span>
+      <span class="user-role">Guardian Account</span>
+    </div>
+    <div class="avatar avatar-sarah">SJ</div>
+  </div>
+</nav>
+
+<main class="dashboard">
+
+  <div class="dashboard-header">
+    <div class="title-row">
+      <h1>Savings Goals &amp; Milestones</h1>
+      <span class="badge badge-purple">Target Achieved: 80%</span>
+    </div>
+    <p class="muted">Empower Leo to track his dreams with structured milestones while preserving ultimate parental safeguard keys.</p>
+  </div>
+
+  <div class="grid-top">
+
+    <section class="card goals-card">
+      <div class="goals-header">
+        <h2>Active Long-Term Goals</h2>
+        <button class="btn-outline">+ Create Custom Goal</button>
+      </div>
+
+      <div class="goal-item goal-blue">
+        <div class="goal-top">
+          <div class="goal-left">
+            <div class="goal-icon">💻</div>
+            <div>
+              <p class="goal-title">Smart Coding Laptop</p>
+              <p class="goal-sub">Deadline: Dec 20, 2025 · AI Projected Goal Completion: <span class="healthy">Healthy</span></p>
+            </div>
+          </div>
+          <span class="goal-amount">$960.00 / $1,200.00 (80%)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill fill-blue" style="width:80%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="lock-note">🔒 Withdrawal Safeguard Active: All release requests must be approved by parents.</span>
+          <a href="#" class="goal-link">View Contributions</a>
+        </div>
+      </div>
+
+      <div class="goal-item goal-green">
+        <div class="goal-top">
+          <div class="goal-left">
+            <div class="goal-icon">🏕️</div>
+            <div>
+              <p class="goal-title">Summer Camp Reservation</p>
+              <p class="goal-sub">Deadline: June 15, 2026 · Recurring: $15/week</p>
+            </div>
+          </div>
+          <span class="goal-amount">$150.00 / $450.00 (33%)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill fill-green" style="width:33%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="lock-note">🔒 Parent approval required for early drawdown.</span>
+          <a href="#" class="goal-link link-green">Modify Goal</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="right-col">
+      <section class="card guard-card">
+        <div class="guard-header">
+          <div class="guard-icon">🔒</div>
+          <h3>Withdrawal Guard</h3>
+        </div>
+        <p class="guard-text">To prevent spontaneous impulses, saving assets are strictly locked until completion of set target.</p>
+      </section>
+
+      <section class="card projections-card">
+        <h3>Milestone Projections</h3>
+        <p class="projections-text">At current chore speed and baseline allowance, Leo will unlock the Coding Laptop on November 12, 2025 (4 weeks ahead of schedule).</p>
+      </section>
+    </div>
+
+  </div>
+
+  <div class="withdraw-header">
+    <div class="title-row">
+      <h2>Request withdrawal From Saving</h2>
+      <span class="badge badge-purple-light">30% More to save</span>
+    </div>
+    <p class="muted">Use your saved funds wisely for genuine reasons. You may have to upload bills as proof of genuine expense.</p>
+  </div>
+
+  <div class="reason-card">
+    <label for="reason">Reason of Withdrawal</label>
+    <input type="text" id="reason" placeholder="Provide a valid reason so that your parents may take decision accordingly.">
+  </div>
+
+  <div class="grid-bottom">
+    <section class="card plan-card">
+      <h3>Provide Your Plan to Expense</h3>
+      <p class="muted small">Provide a valid reason so that your parents may take decision accordingly.</p>
+      <textarea placeholder="Describe how you plan to use these funds..."></textarea>
+    </section>
+
+    <section class="card upload-card">
+      <h3>Upload Bill</h3>
+      <div class="upload-buttons">
+        <button class="btn-upload">Choose File</button>
+        <button class="btn-upload">Upload Photo</button>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+</body>
+</html>
