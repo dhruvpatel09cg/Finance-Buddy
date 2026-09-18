@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinanceBuddy - Kids Wallet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #120052;
+      color: #ffffff;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .bg-card {
+      background-color: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+    }
+    .bg-sidebar {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-6 max-w-[1400px] mx-auto">
+
+  <!-- Header / Navigation Bar -->
+  <header class="flex items-center justify-between pb-8 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <!-- Logo -->
+      <div class="w-10 h-10 bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg border border-purple-400/30">
+        <i class="fa-solid fa-shield-halved text-emerald-400 text-xl"></i>
+      </div>
+      <span class="text-2xl font-bold tracking-tight">
+        Finance<span class="text-emerald-400">Buddy</span>
+      </span>
+      <span class="ml-2 px-2.5 py-0.5 text-xs font-semibold bg-blue-600/40 text-blue-300 rounded-full border border-blue-500/30 uppercase tracking-wider">
+        Kids
+      </span>
+    </div>
+
+    <!-- Center Navigation -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#" class="text-white border-b-2 border-indigo-400 pb-1">Wallet</a>
+      <a href="#" class="text-gray-400 hover:text-white transition">Savings Goals</a>
+      <a href="#" class="text-gray-400 hover:text-white transition">AI Assistant</a>
+      <a href="#" class="text-gray-400 hover:text-white transition">Earn Money</a>
+    </nav>
+
+    <!-- User Profile Info -->
+    <div class="flex items-center gap-3">
+      <div class="text-right">
+        <div class="text-sm font-semibold">Leo Jenkins</div>
+        <div class="text-xs text-gray-400">14 Years Old</div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Leo Jenkins Profile" class="w-10 h-10 rounded-full border-2 border-indigo-400/50 object-cover">
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8 flex-1">
+    
+    <!-- Left Column: Main Dashboard Content -->
+    <div class="lg:col-span-2 space-y-6">
+      
+      <!-- Welcome Heading -->
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight">Hey Leo, welcome to your wallet!</h1>
+        <p class="text-sm text-gray-400 mt-1">Managed under Jenkins Family Trust Guardrails</p>
+      </div>
+
+      <!-- Balance Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        
+        <!-- Everyday Spendable -->
+        <div class="bg-card p-5 rounded-2xl border border-indigo-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-indigo-300 text-xs font-semibold mb-2">
+              <span>Everyday Spendable</span>
+              <i class="fa-regular fa-credit-card text-indigo-400 text-sm"></i>
+            </div>
+            <div class="text-3xl font-extrabold tracking-tight mt-1">$725.00</div>
+          </div>
+          <div class="text-[11px] text-indigo-300/70 mt-4">Ready for immediate card purchases</div>
+        </div>
+
+        <!-- Goal Savings -->
+        <div class="bg-card p-5 rounded-2xl border border-emerald-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-emerald-400 text-xs font-semibold mb-2">
+              <span>Goal Savings</span>
+              <i class="fa-solid fa-bullseye text-emerald-400 text-sm"></i>
+            </div>
+            <div class="text-3xl font-extrabold tracking-tight mt-1">$290.00</div>
+          </div>
+          <div class="text-[11px] text-emerald-400/70 mt-4">Assigned to Coding Laptop Goal</div>
+        </div>
+
+        <!-- Emergency Fund -->
+        <div class="bg-card p-5 rounded-2xl border border-amber-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-amber-400 text-xs font-semibold mb-2">
+              <span>Emergency Fund</span>
+              <i class="fa-solid fa-lock text-amber-400 text-sm"></i>
+            </div>
+            <div class="text-3xl font-extrabold tracking-tight mt-1">$435.00</div>
+          </div>
+          <div class="text-[11px] text-amber-400/70 mt-4">Visibly locked. Guardian key required</div>
+        </div>
+
+      </div>
+
+      <!-- Active Goal Savings Progress Card -->
+      <div class="bg-card p-6 rounded-2xl border border-white/10 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <i class="fa-solid fa-laptop text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Goal: Smart Coding Laptop</h3>
+              <p class="text-xs text-gray-400">Almost there! 80% completed</p>
+            </div>
+          </div>
+          <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition shadow-md">
+            Request Savings Release
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="space-y-1.5">
+          <div class="w-full bg-indigo-950/80 rounded-full h-3 overflow-hidden p-0.5 border border-white/5">
+            <div class="bg-emerald-400 h-full rounded-full w-[80%] transition-all duration-500"></div>
+          </div>
+          <div class="text-xs text-gray-400 pt-1">Raised: $960.00</div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions List -->
+      <div class="bg-card p-6 rounded-2xl border border-white/10 space-y-4">
+        <h3 class="font-bold text-base">Recent Card Activity</h3>
+
+        <div class="space-y-3">
+          <!-- Item 1 -->
+          <div class="flex items-center justify-between py-2 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Steam Games</div>
+                <div class="text-xs text-gray-400">Entertainment • Today, 4:15 PM</div>
+              </div>
+            </div>
+            <div class="font-bold text-sm text-gray-200">-$14.50</div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="flex items-center justify-between py-2 border-b border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Subway Sandwiches</div>
+                <div class="text-xs text-gray-400">Food & Lunch • Yesterday</div>
+              </div>
+            </div>
+            <div class="font-bold text-sm text-gray-200">-$8.20</div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="flex items-center justify-between py-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">NestFund Allowance</div>
+                <div class="text-xs text-gray-400">Weekly Funding • Oct 12</div>
+              </div>
+            </div>
+            <div class="font-bold text-sm text-emerald-400">+$25.00</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar: AI Buddy Assistant -->
+    <div class="bg-sidebar p-6 rounded-2xl flex flex-col justify-between space-y-6">
+      <div class="space-y-6">
+        <!-- AI Header -->
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+            <i class="fa-solid fa-sparkles"></i>
+          </div>
+          <h2 class="font-bold text-indigo-200 text-sm tracking-wide">AI Buddy Assistant</h2>
+        </div>
+
+        <!-- AI Speech/Advice Bubble -->
+        <div class="text-xs text-gray-300 leading-relaxed italic bg-white/5 p-4 rounded-xl border border-white/5">
+          "Great job on your goal! You've saved $960 out of your $1,200 target for the laptop. You can now request your parents to release $240 to complete your purchase safely!"
+        </div>
+
+        <!-- Prompt Chip -->
+        <div class="bg-indigo-600/40 hover:bg-indigo-600/60 transition cursor-pointer p-3 rounded-xl border border-indigo-400/30 text-indigo-200 text-xs flex items-center justify-between">
+          <span>Ask AI: "How can I earn extra goal money?"</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </div>
+
+        <!-- Decorative Chat Visual Graphic -->
+        <div class="pt-6 flex justify-center items-center opacity-30">
+          <div class="relative w-40 h-32">
+            <div class="absolute top-0 left-0 w-28 h-20 bg-indigo-400 rounded-2xl rounded-bl-none"></div>
+            <div class="absolute bottom-0 right-0 w-28 h-20 bg-indigo-300 rounded-2xl rounded-br-none"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button class="w-full py-3 bg-indigo-900/60 hover:bg-indigo-900 text-indigo-200 font-semibold text-xs rounded-xl transition border border-indigo-700/50">
+        Start Chat
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
