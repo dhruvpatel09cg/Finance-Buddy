@@ -1,0 +1,252 @@
+/* =========================================================
+   FinanceBuddy – Transactions page
+   Loads AFTER style.css and only adds what's unique here.
+   ========================================================= */
+
+:root {
+  --navy: rgba(18, 8, 100, 0.75);
+  --navy-deep: #16086b;
+  --danger: #ef4444;
+  --line: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.filter {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-soft);
+  background: rgba(18, 12, 110, 0.55);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.filter:hover {
+  background: rgba(18, 12, 110, 0.8);
+  color: #fff;
+}
+
+.filter.is-active {
+  color: #8b8cff;
+  background: rgba(129, 140, 248, 0.35);
+}
+
+/* ---------- Ledger card ---------- */
+.card--ledger {
+  padding: 14px 16px 6px;
+}
+
+.ledger__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 2px 0 14px;
+}
+
+/* ---------- Icon box (shared by request + rows) ---------- */
+.icon-box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.icon-box--indigo {
+  background: rgba(99, 102, 241, 0.35);
+  color: #a5b4fc;
+}
+
+.icon-box--navy {
+  width: 32px;
+  height: 32px;
+  background: var(--navy);
+}
+
+.icon-box--green {
+  color: #34d399;
+}
+
+.icon-box--indigo-line {
+  color: #818cf8;
+}
+
+/* ---------- Pending request ---------- */
+.request {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--navy-deep);
+  border: 1px solid #7c83f5;
+}
+
+.request__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.request__head {
+  flex: 1;
+  min-width: 0;
+}
+
+.request__head h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.request__head p {
+  margin: 2px 0 0;
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.request__amount {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.request__text {
+  margin: 10px 0 12px;
+  font-size: 9.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.request__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn--approve {
+  padding: 7px 12px;
+  font-size: 10px;
+  color: #c7d2fe;
+  background: #6366f1;
+  border-radius: 6px;
+}
+
+.btn--approve:hover {
+  filter: brightness(1.1);
+}
+
+.btn--decline {
+  padding: 6px 12px;
+  font-size: 10px;
+  color: #f87171;
+  background: transparent;
+  border: 1px solid var(--danger);
+  border-radius: 6px;
+}
+
+.btn--decline:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* ---------- Ledger rows ---------- */
+.ledger {
+  margin-top: 4px;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.entry__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.entry__body strong {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.entry__body span {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.entry__alert {
+  font-weight: 600;
+  color: #f87171;
+}
+
+.entry__amount {
+  padding-right: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ---------- Notification hub ---------- */
+.notif__title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.notif__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.notif__row dt {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.channel {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #818cf8;
+}
+
+.channel--silent {
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #e0e7ff;
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  .request__top {
+    flex-wrap: wrap;
+  }
+
+  .request__amount {
+    margin-left: 40px;
+  }
+
+  .entry__amount {
+    padding-right: 0;
+  }
+}

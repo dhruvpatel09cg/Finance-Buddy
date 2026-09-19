@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceBuddy – Transaction Activity & Requests</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared styles (header, cards, layout) + page-specific styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="transction.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ============ HEADER ============ -->
+    <header class="topbar">
+      <a href="#" class="brand" aria-label="FinanceBuddy home">
+        <span class="brand__mark">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        </span>
+        <span class="brand__name">Finance<span>Buddy</span></span>
+      </a>
+
+      <span class="badge badge--role">PARENTS</span>
+
+      <nav class="nav" aria-label="Main">
+        <a href="#" class="nav__link">Overview</a>
+        <a href="index.html" class="nav__link">Chores &amp; Allowance</a>
+        <a href="#" class="nav__link">Emergency Vault</a>
+        <a href="#" class="nav__link">My Child</a>
+        <a href="transactions.html" class="nav__link is-active" aria-current="page">Transactions</a>
+      </nav>
+
+      <div class="user">
+        <div class="user__text">
+          <strong>Sarah Jenkins</strong>
+          <span>Guardian Account</span>
+        </div>
+        <div class="user__avatar" aria-hidden="true">SJ</div>
+      </div>
+    </header>
+
+    <!-- ============ PAGE TITLE ============ -->
+    <section class="page-head">
+      <div class="page-head__row">
+        <h1>Transaction Activity &amp; Requests</h1>
+        <span class="badge badge--next">Pending Review: 1 Request</span>
+      </div>
+      <p>Secure review point for purchases, chore bonuses, and pending spending releasing proposals.</p>
+    </section>
+
+    <!-- ============ MAIN GRID ============ -->
+    <main class="layout">
+
+      <!-- LEFT COLUMN -->
+      <div class="col">
+
+        <!-- Filters -->
+        <div class="filters" role="group" aria-label="Filter activity">
+          <button type="button" class="filter is-active" aria-pressed="true">All Events</button>
+          <button type="button" class="filter" aria-pressed="false">Chores Payouts</button>
+          <button type="button" class="filter" aria-pressed="false">Money Requests</button>
+        </div>
+
+        <!-- Ledger -->
+        <section class="card card--ledger">
+          <h2 class="ledger__title">Family Ledger Activity</h2>
+
+          <!-- Pending request -->
+          <article class="request">
+            <div class="request__top">
+              <span class="icon-box icon-box--indigo">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z"/></svg>
+              </span>
+              <div class="request__head">
+                <h3>Laptop Purchase Savings Release Request</h3>
+                <p>Submitted by Leo Jenkins &bull; 1 hour ago &bull; AI Safe Score: 98/100</p>
+              </div>
+              <strong class="request__amount">$240.00</strong>
+            </div>
+
+            <p class="request__text">
+              Leo completed 80% of laptop savings goal milestones. Approving releases $240 from his savings balance. Emergency reserve remains 100% secure.
+            </p>
+
+            <div class="request__actions">
+              <button type="button" class="btn btn--approve">Approve Release</button>
+              <button type="button" class="btn btn--decline">Decline &amp; Discuss</button>
+            </div>
+          </article>
+
+          <!-- Ledger rows -->
+          <ul class="ledger">
+            <li class="entry">
+              <span class="icon-box icon-box--navy icon-box--green">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+              </span>
+              <div class="entry__body">
+                <strong>Chore Approval: Walk Sparky &amp; Bowls filled</strong>
+                <span>Today, 8:15 AM</span>
+              </div>
+              <strong class="entry__amount">+$3.50</strong>
+            </li>
+
+            <li class="entry">
+              <span class="icon-box icon-box--navy icon-box--green">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v9H5v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+              </span>
+              <div class="entry__body">
+                <strong>Fast Challenge: Needs &amp; Wants Scenario completed</strong>
+                <span>Yesterday</span>
+              </div>
+              <strong class="entry__amount">+$2.50</strong>
+            </li>
+
+            <li class="entry">
+              <span class="icon-box icon-box--navy icon-box--indigo-line">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19L19 5"/></svg>
+              </span>
+              <div class="entry__body">
+                <strong>Card Declined: Steam Games purchase</strong>
+                <span>Oct 12 &bull; <b class="entry__alert">Category Blocked (Gaming Rule)</b></span>
+              </div>
+              <strong class="entry__amount">-$14.50</strong>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="col">
+        <section class="card card--compact">
+          <h2 class="notif__title">Configurable Notification Hub</h2>
+          <dl class="notif">
+            <div class="notif__row">
+              <dt>Decline Alerts</dt>
+              <dd class="channel">PUSH + SMS</dd>
+            </div>
+            <div class="notif__row">
+              <dt>Withdrawal Approvals</dt>
+              <dd class="channel">PUSH + SMS</dd>
+            </div>
+            <div class="notif__row">
+              <dt>Weekly allowance analytics</dt>
+              <dd class="channel channel--silent">SILENT</dd>
+            </div>
+          </dl>
+        </section>
+      </aside>
+
+    </main>
+  </div>
+</body>
+</html>
