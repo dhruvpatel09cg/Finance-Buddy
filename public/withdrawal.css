@@ -1,0 +1,338 @@
+/* =========================================================
+   FinanceBuddy – Review Savings Withdrawal page
+   Loads AFTER style.css and only adds what's unique here.
+   ========================================================= */
+
+:root {
+  --navy: rgba(16, 8, 96, 0.8);
+  --track: rgba(14, 8, 90, 0.85);
+  --maroon: #6b1f3a;
+  --danger: #ef4444;
+}
+
+/* ---------- Page heading ---------- */
+.page-head--tight {
+  margin: 44px 0 18px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #8b8cff;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.page-head--tight h1 {
+  font-size: 26px;
+}
+
+/* ---------- Larger card variant ---------- */
+.card--lg {
+  padding: 20px;
+}
+
+.card__title {
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---------- Request card: who ---------- */
+.who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.who__avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.who__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.who__text strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.who__text span {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.status-pill {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #b4463f;
+}
+
+/* ---------- Amount row ---------- */
+.label {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.amount-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 22px 0 18px;
+}
+
+.amount {
+  margin: 4px 0 0;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.amount-row__source {
+  text-align: right;
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.source .dot {
+  width: 9px;
+  height: 9px;
+}
+
+/* ---------- Reason quote ---------- */
+.reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--navy);
+}
+
+.reason__mark {
+  flex: none;
+  width: 14px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 3px;
+  background: #5b5fe0;
+}
+
+.reason p {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #e5e7ff;
+}
+
+/* ---------- Impact bars ---------- */
+.impact + .impact {
+  margin-top: 18px;
+}
+
+.impact__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+  font-size: 9.5px;
+  color: var(--text-soft);
+}
+
+.impact__row b {
+  font-weight: 700;
+  color: #fff;
+}
+
+.impact__row .neg,
+.impact__row b.neg {
+  color: #f0546b;
+}
+
+.impact__row .pos {
+  font-weight: 700;
+  color: #10d99a;
+}
+
+.bar {
+  display: flex;
+  height: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--track);
+}
+
+.bar--thin {
+  height: 4px;
+}
+
+.bar__seg--green  { background: #10b981; }
+.bar__seg--maroon { background: var(--maroon); }
+.bar__seg--indigo { background: #6366f1; }
+
+/* ---------- Notes ---------- */
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--navy);
+  color: #34d399;
+}
+
+.note svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.note p {
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.note--warn {
+  margin-top: 16px;
+  color: #fbbf24;
+}
+
+/* ---------- Action buttons ---------- */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn--decline-lg,
+.btn--approve-lg {
+  padding: 11px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.btn--decline-lg {
+  color: #ff4d4d;
+  background: transparent;
+  border: 1.5px solid var(--danger);
+}
+
+.btn--decline-lg:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.btn--approve-lg {
+  color: #04211a;
+  background: #10b981;
+}
+
+.btn--approve-lg:hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- Right column ---------- */
+.coach {
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.coach__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.coach__quote {
+  font-size: 9px;
+}
+
+.rating {
+  margin-top: 14px;
+}
+
+.rating__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #10d99a;
+}
+
+.snapshot__title {
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.summary {
+  margin-top: 0;
+  font-size: 9px;
+}
+
+.summary__row dd {
+  color: #fff;
+}
+
+.chip {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #2dd4bf;
+  background: rgba(20, 184, 166, 0.3);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 520px) {
+  .card--lg {
+    padding: 16px;
+  }
+
+  .amount {
+    font-size: 32px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}

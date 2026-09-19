@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceBuddy – Review Savings Withdrawal Request</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared styles (header, cards, layout) + page-specific styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="withdrawal.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ============ HEADER ============ -->
+    <header class="topbar">
+      <a href="#" class="brand" aria-label="FinanceBuddy home">
+        <span class="brand__mark">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        </span>
+        <span class="brand__name">Finance<span>Buddy</span></span>
+      </a>
+
+      <span class="badge badge--role">PARENTS</span>
+
+      <nav class="nav" aria-label="Main">
+        <a href="#" class="nav__link">Overview</a>
+        <a href="index.html" class="nav__link">Chores &amp; Allowance</a>
+        <a href="withdrawal.html" class="nav__link is-active" aria-current="page">Emergency Vault</a>
+        <a href="#" class="nav__link">My Child</a>
+        <a href="transactions.html" class="nav__link">Transactions</a>
+      </nav>
+
+      <div class="user">
+        <div class="user__text">
+          <strong>Sarah Jenkins</strong>
+          <span>Guardian Account</span>
+        </div>
+        <div class="user__avatar" aria-hidden="true">SJ</div>
+      </div>
+    </header>
+
+    <!-- ============ PAGE TITLE ============ -->
+    <section class="page-head page-head--tight">
+      <a href="#" class="back">&larr; Back to Dashboard</a>
+      <h1>Review Savings Withdrawal Request</h1>
+    </section>
+
+    <!-- ============ MAIN GRID ============ -->
+    <main class="layout">
+
+      <!-- LEFT COLUMN -->
+      <div class="col">
+
+        <!-- Request details -->
+        <section class="card card--lg">
+          <div class="who">
+            <span class="who__avatar" aria-hidden="true">LJ</span>
+            <div class="who__text">
+              <strong>Leo Jenkins</strong>
+              <span>Savings Goal Request &bull; Age 14</span>
+            </div>
+            <span class="status-pill">PENDING APPROVAL</span>
+          </div>
+
+          <div class="amount-row">
+            <div>
+              <p class="label">Requested Amount</p>
+              <p class="amount">$240.00</p>
+            </div>
+            <div class="amount-row__source">
+              <p class="label">Funding Source</p>
+              <p class="source"><i class="dot dot--save"></i>Smart Savings</p>
+            </div>
+          </div>
+
+          <p class="label">Reason for Withdrawal</p>
+          <blockquote class="reason">
+            <span class="reason__mark" aria-hidden="true"></span>
+            <p>&ldquo;I have saved up 80% of my coding laptop. This $240 draw completes my saving goal of $1,200 so I can buy it this week for class!&rdquo;</p>
+          </blockquote>
+        </section>
+
+        <!-- Impact -->
+        <section class="card card--lg">
+          <h2 class="card__title">Transaction &amp; Goal Impact</h2>
+
+          <div class="impact">
+            <div class="impact__row">
+              <span>Smart Savings Balance Impact</span>
+              <span><b>$290.00 &rarr;</b> <b class="neg">$50.00</b></span>
+            </div>
+            <div class="bar" role="img" aria-label="Savings balance drops from $290.00 to $50.00">
+              <span class="bar__seg bar__seg--green" style="width:14%"></span>
+              <span class="bar__seg bar__seg--maroon" style="width:67%"></span>
+            </div>
+          </div>
+
+          <div class="impact">
+            <div class="impact__row">
+              <span>Goal Progress: Coding Laptop</span>
+              <span class="pos">$960.00 / $1,200.00 (80%) &rarr; Completed! (100%)</span>
+            </div>
+            <div class="bar" role="img" aria-label="Goal progress from 80% to 100%">
+              <span class="bar__seg bar__seg--indigo" style="width:64%"></span>
+              <span class="bar__seg bar__seg--green" style="width:16%"></span>
+            </div>
+          </div>
+
+          <div class="note">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            <p>Approving this request completes Leo's goal. He maintains a solid backup buffer with $435.00 still fully locked in his Emergency Vault.</p>
+          </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="actions">
+          <button type="button" class="btn btn--decline-lg">Decline Request</button>
+          <button type="button" class="btn btn--approve-lg">Approve Withdrawal &amp; Complete Goal</button>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="col">
+
+        <section class="card card--compact">
+          <div class="coach">
+            <span class="coach__icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"/></svg>
+            </span>
+            <h2>AI Guardian Analysis</h2>
+          </div>
+
+          <blockquote class="coach__quote">
+            &ldquo;Leo has shown exceptional financial discipline over the last 6 months. He contributed to this laptop goal via consistent chores &amp; allowance savings. This is highly classified as a 'Healthy Asset Conversion'&mdash;transferring savings into an educational development tool.&rdquo;
+          </blockquote>
+
+          <div class="rating">
+            <div class="rating__row">
+              <span>LEO'S SAVINGS HEALTH RATING</span>
+              <span>9.4 / 10</span>
+            </div>
+            <div class="bar bar--thin" role="img" aria-label="Health rating 9.4 out of 10">
+              <span class="bar__seg bar__seg--green" style="width:94%"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card card--compact">
+          <h2 class="snapshot__title">Leo's Account Snapshot</h2>
+
+          <dl class="summary">
+            <div class="summary__row">
+              <dt>Wallet Plan Status</dt>
+              <dd><span class="chip">HIGHLY STABLE</span></dd>
+            </div>
+            <div class="summary__row">
+              <dt>Unlocked Spend Limit</dt>
+              <dd>$75.00 / week</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Emergency Vault</dt>
+              <dd>$435.00 (Untouched)</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Total Assets</dt>
+              <dd>$1,450.00</dd>
+            </div>
+          </dl>
+
+          <div class="note note--warn">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <p>Approving will auto-whitelist the Electronic Stores merchant category look for the next 48 hours so Leo can make the purchase.</p>
+          </div>
+        </section>
+
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
