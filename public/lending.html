@@ -1,139 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanceBuddy - AI-Guided Smart Money for Families</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        deepPurple: '#1b0070',
-                        accentGreen: '#00d084',
-                        btnPrimary: '#6366f1',
-                        btnSecondaryBorder: '#4f46e5',
-                        pillBg: '#5046e5',
-                        badgeBg: '#2c1285'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #1b0070;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceBuddy – Teach your kids smart money habits</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style2.css" />
 </head>
-<body class="flex flex-col justify-between min-h-screen bg-[#1b0070] text-white">
+<body>
 
-    <!-- Navigation Bar -->
-    <header class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-[#260094] border border-[#3b12b3] flex items-center justify-center">
-                <i data-lucide="shield-check" class="w-6 h-6 text-accentGreen"></i>
-            </div>
-            <span class="text-2xl font-bold tracking-tight">
-                <span class="text-accentGreen">Finance</span><span class="text-accentGreen">Buddy</span>
-            </span>
-        </a>
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="container header__inner">
 
-        <!-- Nav Links -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-purple-200/80">
-            <a href="#" class="hover:text-white transition-colors">Features</a>
-            <a href="#" class="hover:text-white transition-colors">AI Co-Pilot</a>
-            <a href="#" class="hover:text-white transition-colors">Security First</a>
-            <a href="#" class="hover:text-white transition-colors">Family Pricing</a>
-        </nav>
+      <a href="#" class="logo" aria-label="FinanceBuddy home">
+        <span class="logo__icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6l-8-3Z" />
+            <path d="m8.5 12 2.5 2.5 4.5-5" />
+          </svg>
+        </span>
+        <span class="logo__text"><span class="logo__finance">Finance</span><span class="logo__buddy">Buddy</span></span>
+      </a>
 
-        <!-- Right Action Buttons -->
-        <div class="flex items-center gap-6">
-            <a href="#" class="text-sm font-medium text-purple-200/90 hover:text-white transition-colors">Sign In</a>
-            <a href="#" class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#6366f1] text-white hover:bg-indigo-500 transition-colors shadow">Get Started Free</a>
-        </div>
-    </header>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#ai-copilot">AI Co-Pilot</a>
+        <a href="#security">Security First</a>
+        <a href="#pricing">Family Pricing</a>
+      </nav>
 
-    <!-- Main Content -->
-    <main class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-12 flex-grow flex flex-col justify-between">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Left Column Content -->
-            <div class="lg:col-span-6 flex flex-col items-start gap-6">
-                
-                <!-- Badge Pill -->
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2a088c] text-xs font-medium text-indigo-200 border border-purple-500/20">
-                    <span>⚡</span>
-                    <span>AI-Guided Smart Money for Families</span>
-                </div>
+      <div class="header__actions">
+        <a href="#" class="link-signin">Sign In</a>
+        <a href="#" class="btn btn--primary btn--small">Get Started Free</a>
+      </div>
 
-                <!-- Headline -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-                    Teach your kids smart money habits, with safety built-in.
-                </h1>
+    </div>
+  </header>
 
-                <!-- Subtitle -->
-                <p class="text-base sm:text-lg text-purple-200/70 leading-relaxed max-w-xl">
-                    FinanceBuddy is the parent-funded debit card and smart wallet that uses age-aware AI plans to automatically balance daily spending, goals, and highly-secured emergency backup funds.
-                </p>
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero__inner">
 
-                <!-- Action Buttons -->
-                <div class="flex flex-wrap items-center gap-4 pt-2">
-                    <a href="#" class="px-6 py-3 rounded-lg bg-[#6366f1] hover:bg-indigo-500 text-white font-medium text-sm transition-colors shadow-md">
-                        Open Parent Account
-                    </a>
-                    <a href="#" class="px-6 py-3 rounded-lg border border-indigo-400/50 hover:bg-white/5 text-purple-100 font-medium text-sm transition-colors">
-                        Watch Demo Video
-                    </a>
-                </div>
-            </div>
+        <div class="hero__content">
+          <span class="badge">🌟 AI-Guided Smart Money for Families</span>
 
-            <!-- Right Column Image Card -->
-            <div class="lg:col-span-6 flex justify-center lg:justify-end">
-                <div class="w-full max-w-lg lg:max-w-none rounded-2xl overflow-hidden shadow-2xl border border-indigo-400/20">
-                    <img 
-                        src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=80" 
-                        alt="Father and daughter using finance mobile app" 
-                        class="w-full h-[360px] sm:h-[420px] object-cover"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x600/2b0b73/ffffff?text=Family+Finance+App';"
-                    />
-                </div>
-            </div>
+          <h1>Teach your kids smart money habits, with safety built-in.</h1>
+
+          <p class="hero__text">
+            FinanceBuddy is the parent-funded debit card and smart wallet that uses
+            age-aware AI plans to automatically balance daily spending, goals, and
+            highly-secured emergency backup funds.
+          </p>
+
+          <div class="hero__buttons">
+            <a href="#" class="btn btn--primary">Open Parent Account</a>
+            <a href="#" class="btn btn--outline">Log in as Child</a>
+          </div>
         </div>
 
-        <!-- Bottom Features Row -->
-        <div class="mt-16 lg:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full pb-8">
-            <div class="bg-[#5046e5] hover:bg-[#5b52ee] transition-colors py-4 px-6 rounded-xl text-center shadow-lg cursor-pointer">
-                <span class="text-white font-bold text-base sm:text-lg">Set Your Financial Goal</span>
-            </div>
-            <div class="bg-[#5046e5] hover:bg-[#5b52ee] transition-colors py-4 px-6 rounded-xl text-center shadow-lg cursor-pointer">
-                <span class="text-white font-bold text-base sm:text-lg">Be Wise</span>
-            </div>
-            <div class="bg-[#5046e5] hover:bg-[#5b52ee] transition-colors py-4 px-6 rounded-xl text-center shadow-lg cursor-pointer">
-                <span class="text-white font-bold text-base sm:text-lg">Choose Your Plan and Grow</span>
-            </div>
+        <div class="hero__image">
+          <!-- Replace hero.jpg with your own high‑resolution photo -->
+          <img src="hero.jpg" alt="A father and daughter smiling at a phone together on the sofa" />
         </div>
 
-    </main>
+      </div>
+    </section>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <!-- ============ STEPS ============ -->
+    <section class="steps">
+      <div class="container steps__inner">
+        <a href="#" class="btn btn--primary btn--large">Set Your Financial Goal</a>
+        <a href="#" class="btn btn--primary btn--large">Be Wise</a>
+        <a href="#" class="btn btn--primary btn--large">Choose Your Plan and Grow</a>
+      </div>
+    </section>
+  </main>
+
 </body>
 </html>
