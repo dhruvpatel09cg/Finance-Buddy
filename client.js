@@ -51,7 +51,7 @@
       event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation();
       if ($("#password").value !== $("#confirmPassword").value) return show("Passwords do not match.");
       try {
-        const data = await request("/api/auth/register", { method: "POST", body: JSON.stringify({ fullName: $("#fullName").value, email: $("#email").value, password: $("#password").value, role: roleFromTabs("#tabParent", "#tabChild") }) });
+        const data = await request("/api/auth/register", { method: "POST", body: JSON.stringify({ fullName: $("#fullName").value, email: $("#email").value, password: $("#password").value, parentEmail: $("#parentEmail")?.value, role: roleFromTabs("#tabParent", "#tabChild") }) });
         localStorage.setItem(tokenKey, data.token); gotoAccount(data.user.role, data.redirectTo);
       } catch (error) { show(error.message); }
     }, true);
@@ -72,7 +72,7 @@
   const pageRoutes = {
     "Chores & Allowance": "/allowance", "Savings Goals": "/goals", "Learning Hub": "/learning",
     "Family Activity": "/activity", "Emergency Vault": "/emergency", "Overview": "/dashboard",
-    "AI Guard": "/child", "Approvals": "/activity", "Child": "/child", "Family Security": "/emergency", "Wallet": "/kids",
+    "AI Guard": "/child", "Approvals": "/activity", "Child": "/my-child", "My Child": "/my-child", "Transactions": "/transactions", "Family Security": "/emergency", "Wallet": "/kids",
     "AI Assistant": "/learning", "Earn Money": "/allowance"
   };
   document.addEventListener("click", event => {
@@ -81,7 +81,7 @@
     if (destination) { event.preventDefault(); event.stopImmediatePropagation(); window.location.assign(destination); }
   }, true);
 
-  const privatePages = ["/child", "/child.html", "/allowance", "/allownance.html", "/goals", "/savinggoals1.html", "/activity", "/savinggoals.html", "/learning", "/learning.html", "/emergency", "/emergency.html"];
+  const privatePages = ["/child", "/child.html", "/my-child", "/my-child.html", "/transactions", "/Transaction.html", "/allowance", "/allownance.html", "/goals", "/savinggoals1.html", "/activity", "/savinggoals.html", "/learning", "/learning.html", "/emergency", "/emergency.html"];
   if (privatePages.includes(location.pathname)) {
     request("/api/me").then(({ user }) => {
       document.querySelectorAll(".user-name").forEach(element => { element.textContent = user.fullName; });
@@ -138,6 +138,37 @@
   }
 
   if (["/learning", "/learning.html"].includes(location.pathname)) bindButton(".btn-option-primary", async button => { await saveEvent("academy-challenge-completed", button.textContent.trim()); button.textContent = "Correct! Reward recorded"; button.disabled = true; show("Great choice—your challenge reward was recorded."); });
+  if (["/my-child", "/my-child.html"].includes(location.pathname)) {
+    request("/api/children").then(({ children }) => {
+      const list = $("#childList"); const empty = $("#noChildren");
+      if (!list) return;
+      list.replaceChildren();
+      if (!children.length) { empty.hidden = false; return; }
+      empty.hidden = true;
+      children.forEach(child => {
+        const card = document.createElement("article"); card.className = "child-card";
+        const heading = document.createElement("h2"); heading.textContent = child.fullName;
+        const email = document.createElement("p"); email.className = "muted"; email.textContent = child.email;
+        const balance = document.createElement("p"); balance.className = "child-total"; balance.textContent = dollars(child.balances.total);
+        const details = document.createElement("p"); details.className = "muted"; details.textContent = `Everyday ${dollars(child.balances.everyday)} · Savings ${dollars(child.balances.savings)} · Emergency ${dollars(child.balances.emergency)}`;
+        card.append(heading, email, balance, details); list.append(card);
+      });
+    }).catch(error => show(error.message));
+  }
+  if (["/transactions", "/Transaction.html"].includes(location.pathname)) {
+    request("/api/transactions").then(({ transactions }) => {
+      const ledger = $("#transactionLedger"); const empty = $("#noTransactions"); if (!ledger) return;
+      ledger.replaceChildren(); if (!transactions.length) { empty.hidden = false; return; } empty.hidden = true;
+      transactions.forEach(transaction => {
+        const item = document.createElement("li"); item.className = "entry";
+        const body = document.createElement("div"); body.className = "entry__body";
+        const title = document.createElement("strong"); title.textContent = transaction.note;
+        const date = document.createElement("span"); date.textContent = `${transaction.accountName} · ${new Date(transaction.createdAt + "Z").toLocaleString()}`;
+        const amount = document.createElement("strong"); amount.className = "entry__amount"; amount.textContent = `${transaction.type === "release" ? "+" : "+"}${dollars(transaction.amount)}`;
+        body.append(title, date); item.append(body, amount); ledger.append(item);
+      });
+    }).catch(error => show(error.message));
+  }
   if (["/activity", "/savinggoals.html"].includes(location.pathname)) document.querySelectorAll(".filter-pill").forEach(button => button.addEventListener("click", () => { document.querySelectorAll(".filter-pill").forEach(item => item.classList.remove("active")); button.classList.add("active"); }));
 
   if (["/dashboard", "/dashboard.html"].includes(location.pathname)) {
@@ -159,11 +190,11 @@
     makeInteractive($(".brand"), goHome, "Return to FinanceBuddy home");
     makeInteractive($(".profile"), signOut, "Sign out and return to the FinanceBuddy home page");
 
-    $(".fund-btn")?.addEventListener("click", async () => {
+    $(".btn-fund")?.addEventListener("click", async () => {
       const amount = window.prompt("Amount to add to the family wallet (USD):"); if (amount === null) return;
       try { const data = await request("/api/funds", { method: "POST", body: JSON.stringify({ amount, note: "Parent wallet funding" }) }); show(data.message); location.reload(); } catch (error) { show(error.message); }
     });
-    $(".review-btn")?.addEventListener("click", async () => {
+    $(".btn-review")?.addEventListener("click", async () => {
       try {
         const dashboard = await request("/api/dashboard");
         if (dashboard.user.role === "child") {

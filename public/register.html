@@ -289,6 +289,14 @@ html,body{
         </div>
       </div>
 
+      <div class="field" id="parentEmailField" hidden>
+        <label for="parentEmail">Registered Parent Email</label>
+        <div class="input-wrap">
+          <svg class="icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <input type="email" id="parentEmail" name="parentEmail" placeholder="parent@example.com" autocomplete="email">
+        </div>
+      </div>
+
       <div class="field">
         <label for="password">Password</label>
         <div class="input-wrap">
@@ -341,6 +349,9 @@ html,body{
       });
       tab.classList.add('active');
       tab.setAttribute('aria-selected','true');
+      const childSelected = tab.id === 'tabChild';
+      document.getElementById('parentEmailField').hidden = !childSelected;
+      document.getElementById('parentEmail').required = childSelected;
     });
   });
 

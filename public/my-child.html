@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinanceBuddy — My Child</title>
+  <link rel="stylesheet" href="aiplan.css">
+  <style>
+    .child-page { max-width: 1100px; margin: 0 auto; padding: 38px 32px; }
+    .child-page h1 { font-size: clamp(26px, 4vw, 38px); margin-bottom: 8px; }
+    .child-page > p { margin-bottom: 28px; }
+    .child-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .child-card { padding: 24px; border: 1px solid var(--panel-border); border-radius: 16px; background: rgba(21, 11, 86, .58); box-shadow: 0 12px 26px rgba(5, 1, 35, .2); }
+    .child-card h2 { font-size: 21px; margin-bottom: 7px; }
+    .child-total { color: #67e8a8; font-size: 32px; font-weight: 800; margin: 22px 0 8px; }
+    .empty-card { padding: 30px; border: 1px dashed rgba(201,191,255,.55); border-radius: 16px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z" fill="#c9bfff"/><path d="M9 12.2l2 2 4-4.4" stroke="#241a5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="logo-text"><span class="light">Finance</span><span class="buddy">Buddy</span></div><span class="plan-badge">Parents</span>
+    </div>
+    <div class="nav-links"><a href="/dashboard">Overview</a><a href="/child">AI Guard</a><a href="/my-child" class="active" aria-current="page">My Child</a><a href="/transactions">Transactions</a></div>
+    <div class="nav-right"><div class="user-info"><span class="user-name">Loading…</span><span class="user-role">Guardian Account</span></div><div class="avatar avatar-sarah">FB</div></div>
+  </nav>
+  <main class="child-page">
+    <h1>My Child</h1>
+    <p class="muted">View the balances of every child account linked to your parent account.</p>
+    <p id="noChildren" class="empty-card" hidden>No child accounts are linked yet. Register a child account using this parent account’s email address.</p>
+    <section id="childList" class="child-list" aria-live="polite"></section>
+  </main>
+</body>
+</html>

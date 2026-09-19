@@ -16,7 +16,11 @@ export default async function handler(req, res) {
 
   const { amount, splitPercentages, studentName } = req.body || {};
 
-  if (!amount || !splitPercentages) {
+  const numericAmount = Number(amount);
+  const emergencyPct = Number(splitPercentages?.emergencyPct);
+  const savingPct = Number(splitPercentages?.savingPct);
+  if (!Number.isFinite(numericAmount) || numericAmount <= 0 || numericAmount > 1000000 ||
+      !Number.isFinite(emergencyPct) || !Number.isFinite(savingPct) || emergencyPct < 0 || savingPct < 0 || emergencyPct + savingPct > 100) {
     return res.status(400).json({ error: "Missing amount or splitPercentages" });
   }
 
@@ -24,10 +28,11 @@ export default async function handler(req, res) {
 
   // Pre-computed fallback so the app never breaks, even with no key or a
   // failed request.
-  const emergencyAmt = Math.round((amount * splitPercentages.emergencyPct) / 100);
-  const savingAmt = Math.round((amount * splitPercentages.savingPct) / 100);
-  const enjoymentAmt = amount - emergencyAmt - savingAmt;
-  const fallback = `Hi ${studentName || "there"}! You received ₹${amount} — here's a smart split: ` +
+  const safeName = String(studentName || "there").trim().replace(/[\r\n<>]/g, "").slice(0, 80) || "there";
+  const emergencyAmt = Math.round((numericAmount * emergencyPct) / 100);
+  const savingAmt = Math.round((numericAmount * savingPct) / 100);
+  const enjoymentAmt = numericAmount - emergencyAmt - savingAmt;
+  const fallback = `Hi ${safeName}! You received ₹${numericAmount} — here's a smart split: ` +
     `₹${emergencyAmt} to Emergency, ₹${savingAmt} to Saving, ₹${enjoymentAmt} for Enjoyment, ` +
     `because building healthy money habits early really pays off.`;
 
@@ -36,12 +41,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
+      signal: controller.signal,
       body: JSON.stringify({
         model: "llama-3.1-8b-instant",
         max_tokens: 120,
@@ -54,12 +62,13 @@ export default async function handler(req, res) {
           },
           {
             role: "user",
-            content: `Amount received: ₹${amount}. Emergency: ₹${emergencyAmt}, Saving: ₹${savingAmt}, ` +
-              `Enjoyment: ₹${enjoymentAmt}. Student's name: ${studentName || "there"}.`,
+            content: `Amount received: ₹${numericAmount}. Emergency: ₹${emergencyAmt}, Saving: ₹${savingAmt}, ` +
+              `Enjoyment: ₹${enjoymentAmt}. Student's name: ${safeName}.`,
           },
         ],
       }),
     });
+    clearTimeout(timeout);
 
     if (!response.ok) throw new Error(`Groq API error: ${response.status}`);
 
@@ -69,8 +78,8 @@ export default async function handler(req, res) {
     if (!explanation) throw new Error("Empty response from Groq");
 
     return res.status(200).json({ explanation, source: "groq" });
-  } catch (err) {
+  } catch {
     // Graceful fallback — the UI never breaks even if Groq is down.
-    return res.status(200).json({ explanation: fallback, source: "fallback", error: String(err.message || err) });
+    return res.status(200).json({ explanation: fallback, source: "fallback" });
   }
 }
