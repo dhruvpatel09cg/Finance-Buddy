@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceBuddy — Family Emergency Vault</title>
+<link rel="stylesheet" href="emergency.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L4 5v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z" fill="#c9bfff"/>
+        <path d="M9 12.2l2 2 4-4.4" stroke="#241a5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span class="light">Finance</span><span class="buddy">Buddy</span></div>
+    <span class="plan-badge">Child</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Overview</a>
+    <a href="#">Chores &amp; Allowance</a>
+    <a href="#" class="active">Emergency Vault</a>
+    <a href="#">My Child</a>
+    <a href="#">Transactions</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info">
+      <span class="user-name">Sarah Jenkins</span>
+      <span class="user-role">Guardian Account</span>
+    </div>
+    <div class="avatar avatar-sarah">SJ</div>
+  </div>
+</nav>
+
+<main class="dashboard">
+
+  <div class="dashboard-header">
+    <div class="title-row">
+      <h1>Family Emergency Vault</h1>
+      <span class="badge-high">Locked Vault Security: HIGH</span>
+    </div>
+    <p class="muted">The ultimate protection level. Sequestered cleanly from everyday allowance, guarded by multi-step validation protocols.</p>
+  </div>
+
+  <div class="grid-top">
+    <section class="card buffer-card">
+      <div class="buffer-info">
+        <span class="eyebrow">VISIBLY LOCKED VAULT BUFFER</span>
+        <div class="buffer-amount">$435.00</div>
+        <span class="muted small">Leo Jenkins Trust (Age 14 Standard Allocation)</span>
+      </div>
+      <div class="lock-circle">🔒</div>
+    </section>
+
+    <section class="card projection-card">
+      <h3>Future Coverage Projections</h3>
+      <p class="projection-text">The current emergency buffer represents <strong>8.5 weeks</strong> of baseline safe reserve projection based on Leo's regular historical category spend.</p>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:65%"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid-mid">
+    <section class="card safeguards-card">
+      <h2>Safeguards &amp; trusted contacts</h2>
+
+      <div class="safeguards-inner">
+        <div class="sub-card">
+          <h3>Co-signer Authorization</h3>
+          <ul class="step-list">
+            <li class="step-item">
+              <div>
+                <p class="step-title">1. Request Submission</p>
+                <p class="step-sub">Child states emergency reason</p>
+              </div>
+              <span class="status status-passed">Passed</span>
+            </li>
+            <li class="step-item">
+              <div>
+                <p class="step-title">2. Parent Approval Key</p>
+                <p class="step-sub">SarahJenkins security pin confirmation</p>
+              </div>
+              <span class="status status-pending">Pending</span>
+            </li>
+            <li class="step-item">
+              <div>
+                <p class="step-title">3. Release Validation</p>
+                <p class="step-sub">Secure drawdown authorization</p>
+              </div>
+              <span class="status status-locked">Locked</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sub-card">
+          <h3>Trusted Family Network</h3>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div>
+                <p class="contact-name">Sarah Jenkins</p>
+                <p class="contact-sub">Guardian (Primary) · +1 (555) 392-1049</p>
+              </div>
+              <span class="phone-icon">📞</span>
+            </li>
+            <li class="contact-item">
+              <div>
+                <p class="contact-name">Arthur Jenkins</p>
+                <p class="contact-sub">Secondary Guardian · +1 (555) 392-8822</p>
+              </div>
+              <span class="phone-icon">📞</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card log-card">
+      <h2>Security Events Log</h2>
+      <ul class="log-list">
+        <li class="log-item">
+          <p class="log-title">SarahJenkins Security pin reset</p>
+          <p class="log-time">Today, 2:14 PM</p>
+        </li>
+        <li class="log-item">
+          <p class="log-title">New card validation key verified</p>
+          <p class="log-time">Yesterday</p>
+        </li>
+        <li class="log-item">
+          <p class="log-title">Everyday spend ratio auto updated</p>
+          <p class="log-time">Oct 10</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="card analytics-card">
+    <div class="analytics-left">
+      <span class="eyebrow">AI ANALYTICS</span>
+      <div class="analytics-headline">1 MONTH 10 DAYS</div>
+      <p class="analytics-desc">You may pass in emergency situation with this fund considering no increment in expenses.</p>
+      <p class="analytics-warning">You should save at least 3 months expenses as EMERGENCY FUND.</p>
+    </div>
+    <div class="alert-circle">!</div>
+  </section>
+
+</main>
+
+</body>
+</html>
