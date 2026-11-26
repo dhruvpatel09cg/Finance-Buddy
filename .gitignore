@@ -13,3 +13,5 @@ Thumbs.db
 *.sqlite-shm
 *.sqlite-wal
 .pytest_cache
+package-lock.json
+yarn.lock
